@@ -40,7 +40,10 @@ $(function() {
         }
 
         // Allow user to optionally provide data-confirm="Are you sure?"
-        if (options.confirm) {
+        if (options.confirm !== undefined) {
+            if (options.confirm.trim().length === 0) {
+                options.confirm = 'Are you sure?'
+            }
             confirm(options, function() {
                 cb(sendRequest(url, method, options));
             });
